@@ -69,6 +69,11 @@ function TownTrace() {
                     }
                 }
                 return filteredNums;
+            case "select town":
+                for (var x = 0; x < store.length; x++) {
+                    filteredNums.push(store[x]);
+                }
+                return filteredNums;
         }
     }
 
