@@ -1,7 +1,11 @@
 var addBtn = document.querySelector(".addBtn");
 var regText = document.querySelector(".regFieldText");
-
+var townInstance = TownTrace();
 addBtn.addEventListener('click', function () {
+
+    townInstance.register(regText.value.trim());
+    if (townInstance.validity() === "valid") { 
+
     var newHead = document.createElement("h3");
 
     var newRegNum = document.createTextNode(regText.value.trim());
@@ -11,4 +15,5 @@ addBtn.addEventListener('click', function () {
     document.body.insertBefore(newHead, currentDiv);
     regText.value = '';
 
+    }
 })
