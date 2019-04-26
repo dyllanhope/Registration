@@ -11,16 +11,18 @@ addBtn.addEventListener('click', function () {
 
         var newHead = document.createElement("h3");
 
+        var parentDiv = document.getElementById("childElement").parentNode;
         var newRegNum = document.createTextNode(townInstance.regNum());
         newHead.appendChild(newRegNum);
 
-        var currentDiv = document.getElementById("parentElement");
-        document.body.insertBefore(newHead,currentDiv);
+        var currentDiv = document.getElementById("childElement");
+        parentDiv.insertBefore(newHead,currentDiv);
         regText.value = '';
     }
 })
 selectItems.onchange = function(){
     selectedVal = document.getElementById("item1").value;
     console.log(selectedVal);
-    console.log(townInstance.filter(selectedVal));
+    //var registerList = townInstance.filter(selectedVal);
+    
 }
