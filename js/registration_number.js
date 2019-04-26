@@ -8,7 +8,7 @@ addBtn.addEventListener('click', function () {
 
     var newHead = document.createElement("h3");
 
-    var newRegNum = document.createTextNode(regText.value.trim());
+    var newRegNum = document.createTextNode(townInstance.regNum());
     newHead.appendChild(newRegNum);
 
     var currentDiv = document.getElementById("parentElement");
