@@ -6,31 +6,34 @@ function TownTrace() {
 
     function registerPlate(plateNum) {
         //CA,CJ,CL,CT,CY
-        if (plateNum !== undefined) {
+        if (plateNum !==undefined) {
             upCase = plateNum.toUpperCase();
-        }
-        if ((upCase.startsWith("CA")) || (upCase.startsWith("CJ")) || (upCase.startsWith("CL")) || (upCase.startsWith("CT")) || (upCase.startsWith("CY"))) {
-            if (upCase.length === 8) {
-                if (upCase.substr(2, 1) === " ") {
-                    if (regNums[upCase] === undefined) {
-                        regNums[upCase] = 0;
-                        console.log(regNums);
-                        test = "valid";
+            if ((upCase.startsWith("CA")) || (upCase.startsWith("CJ")) || (upCase.startsWith("CL")) || (upCase.startsWith("CT")) || (upCase.startsWith("CY"))) {
+                if (upCase.length === 8) {
+                    if (upCase.substr(2, 1) === " ") {
+                        if (regNums[upCase] === undefined) {
+                            regNums[upCase] = 0;
+                            console.log(regNums);
+                            test = "valid";
+                        } else {
+                            test = "invalid";
+                            errorM = "*This registration has been entered already";
+                        }
                     } else {
                         test = "invalid";
-                        errorM = "*This registration has been entered already";
+                        errorM = "*Please make sure there is a space between the first 2 and last 5 characters";
                     }
                 } else {
                     test = "invalid";
-                    errorM = "*Please make sure there is a space between the first 2 and last 5 characters";
+                    errorM = "*Please enter the registration in a valid format";
                 }
             } else {
                 test = "invalid";
-                errorM = "*Please enter the registration in a valid format";
+                errorM = "*We do not keep track of registrations from that town";
             }
         } else {
             test = "invalid";
-            errorM = "*We do not keep track of registration from that town";
+            errorM ="*Please enter your registration";
         }
     }
     function validTest(testPlate) {

@@ -77,37 +77,43 @@ describe('Error testing', function () {
         var townInstance = TownTrace();
         townInstance.register("CY 13245");
 
-        assert.deepEqual(townInstance.validity(), "valid");
+        assert.equal(townInstance.validity(), "valid");
     })
-    it('Should return "invalid" as either 1 or more specifications are not met', function () {
+    it('Should return "invalid" as either 1 or more specifications are not met (including undefined inputs)', function () {
         var townInstance = TownTrace();
-        townInstance.register("CP 13245");
+        townInstance.register();
 
-        assert.deepEqual(townInstance.validity(), "invalid");
+        assert.equal(townInstance.validity(), "invalid");
+    })
+    it('Should return error message for an undefined input', function () {
+        var townInstance = TownTrace();
+        townInstance.register();
+
+        assert.equal(townInstance.errorText(), "*Please enter your registration");
     })
     it('Should return error message for registration from a different town', function () {
         var townInstance = TownTrace();
         townInstance.register("CP 13245");
 
-        assert.deepEqual(townInstance.errorText(), "*We do not keep track of registration from that town");
+        assert.equal(townInstance.errorText(), "*We do not keep track of registrations from that town");
     })
     it('Should return error message for registration that contains either too many or too little characters', function () {
         var townInstance = TownTrace();
         townInstance.register("CY 132452");
 
-        assert.deepEqual(townInstance.errorText(), "*Please enter the registration in a valid format");
+        assert.equal(townInstance.errorText(), "*Please enter the registration in a valid format");
     })
     it('Should return error message for registration that does not contain a space between the first 2 and last 5 chars', function () {
         var townInstance = TownTrace();
         townInstance.register("CY313245");
 
-        assert.deepEqual(townInstance.errorText(), "*Please make sure there is a space between the first 2 and last 5 characters");
+        assert.equal(townInstance.errorText(), "*Please make sure there is a space between the first 2 and last 5 characters");
     })
     it('Should return error message for registration that has already been entered', function () {
         var townInstance = TownTrace();
         townInstance.register("CY 13245");
         townInstance.register("CY 13245");
 
-        assert.deepEqual(townInstance.errorText(), "*This registration has been entered already");
+        assert.equal(townInstance.errorText(), "*This registration has been entered already");
     })
 })
