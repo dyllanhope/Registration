@@ -24,7 +24,6 @@ addBtn.addEventListener('click', function () {
         buildElems(townInstance.regNum());
         regText.value = '';
     } else {
-        console.log(townInstance.errorText());
         errorMessage.innerHTML = townInstance.errorText();
     }
     localStorage["regList"] = JSON.stringify(townInstance.regList());
@@ -38,7 +37,6 @@ clearBtn.addEventListener('click', function () {
 
 selectItems.onchange = function () {
     var selectedVal = document.getElementById("item1").value;
-    console.log(selectedVal);
     var filterList = townInstance.filter(selectedVal);
     clearChildElems();
     for (var k = 0; k < filterList.length; k++) {
@@ -47,13 +45,13 @@ selectItems.onchange = function () {
 
 }
 function clearChildElems() {
-    var element = document.getElementById("parentElement");
+    var element = document.getElementById("parentElementRegHeadings");
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
     var childNode = document.createElement("div");
     childNode.id = "childElement";
-    var parent = document.getElementById("parentElement");
+    var parent = document.getElementById("parentElementRegHeadings");
     parent.appendChild(childNode);
 }
 function buildElems(regInput) {
