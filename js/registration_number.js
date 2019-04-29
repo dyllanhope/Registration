@@ -49,28 +49,14 @@ addBtn.addEventListener('click', function () {
 clearBtn.addEventListener('click',function(){
     townInstance.clear();
     localStorage.clear();
-    var element = document.getElementById("parentElement");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-    var childNode = document.createElement("div");
-    childNode.id = "childElement";
-    var parent = document.getElementById("parentElement");
-    parent.appendChild(childNode);
+    clearChildElems();
 })
 
 selectItems.onchange = function () {
     var selectedVal = document.getElementById("item1").value;
     console.log(selectedVal);
     var filterList = townInstance.filter(selectedVal);
-    var element = document.getElementById("parentElement");
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-    var childNode = document.createElement("div");
-    childNode.id = "childElement";
-    var parent = document.getElementById("parentElement");
-    parent.appendChild(childNode);
+    clearChildElems();
 
     for (var k = 0; k < filterList.length; k++) {
         var newHead = document.createElement("h3");
@@ -84,4 +70,14 @@ selectItems.onchange = function () {
         parentDiv.insertBefore(newHead, currentDiv)
     }
 
+}
+function clearChildElems(){
+    var element = document.getElementById("parentElement");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+    var childNode = document.createElement("div");
+    childNode.id = "childElement";
+    var parent = document.getElementById("parentElement");
+    parent.appendChild(childNode);
 }
