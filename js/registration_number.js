@@ -4,11 +4,12 @@ var selectItems = document.getElementById("item1");
 var errorMessage = document.getElementById("error");
 var clearBtn = document.querySelector(".clearBtn");
 var i = 1;
+
+let storedReg = {};
 if (localStorage['regList']) {
-    var storedReg = JSON.parse(localStorage['regList'])
-} else {
-    var storedReg = {};
+    storedReg = JSON.parse(localStorage['regList'])
 }
+
 var townInstance = TownTrace(storedReg);
 var updateRef = townInstance.filter("select town");
 for (var k = 0; k < updateRef.length; k++) {

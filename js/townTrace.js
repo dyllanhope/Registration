@@ -3,9 +3,30 @@ function TownTrace(registrationList) {
     var test = "invalid";
     var upCase = '';
     var errorM = '';
+    var townRegNumberMapping = {
+        "select town" : "",
+        "Cape Town": "CA",
+        "Paarl": "CJ",
+        "Ceres": "CT",
+        "Stellenbosch": "CL",
+        "Bellville": "CY"
+    }
+
+    var startsWithOptions = Object.values(townRegNumberMapping);
+
+    function isValidRegNumber(regNumber){
+        var matchFound = startsWithOptions.some(function(townStart){
+            if (townStart === ""){
+                return false;
+            }
+            return regNumber.startsWith(townStart);
+        });
+        return matchFound;
+    }
 
     function registerPlate(plateNum) {
         //CA,CJ,CL,CT,CY
+        
         if (plateNum === '' || plateNum === undefined) {
             test = "invalid";
             errorM = "*Please enter your registration";
@@ -13,12 +34,12 @@ function TownTrace(registrationList) {
         } else {
             upCase = plateNum.toUpperCase();
         }
-        if ((upCase.startsWith("CA")) || (upCase.startsWith("CJ")) || (upCase.startsWith("CL")) || (upCase.startsWith("CT")) || (upCase.startsWith("CY"))) {
+        
+        if (isValidRegNumber(upCase)) {
             if (upCase.length === 8) {
                 if (upCase.substr(2, 1) === " ") {
                     if (regNums[upCase] === undefined) {
                         regNums[upCase] = 0;
-                        console.log(regNums);
                         test = "valid";
                     } else {
                         test = "invalid";
@@ -51,41 +72,18 @@ function TownTrace(registrationList) {
     function displayRegList() {
         return regNums;
     }
-    function filterRegNums(loc) {
-        var town = loc || "select town";
-        var locTag = '';
-        var store;
-        var filteredNums = [];
-        store = Object.keys(regNums);
-        switch (town) {
-            case "Cape Town":
-                locTag = "CA";
-                break;
-            case "Paarl":
-                locTag = "CJ";
-                break;
-            case "Ceres":
-                locTag = "CT";
-                break;
-            case "Stellenbosch":
-                locTag = "CL";
-                break;
-            case "Bellville":
-                locTag = "CY";
-                break;
-            case "select town":
-                for (var x = 0; x < store.length; x++) {
-                    filteredNums.push(store[x]);
-                }
-                return filteredNums;
+    function filterRegNums(locationName) {
+        var town = locationName || "select town";
+        var regNumbers = Object.keys(regNums);
+        var locationRegNumberStart = townRegNumberMapping[town];
+
+        function doesRegNumberStartWith(regNumber){
+            return regNumber.startsWith(locationRegNumberStart);
         }
-        for (var x = 0; x < store.length; x++) {
-            if (store[x].startsWith(locTag)) {
-                filteredNums.push(store[x]);
-            }
-        }
+        var filteredNums = regNumbers.filter(doesRegNumberStartWith);
         return filteredNums;
     }
+
     function displayError() {
         return errorM;
     }
