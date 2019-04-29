@@ -72,7 +72,7 @@ describe('Filter testing', function () {
         assert.deepEqual(townInstance.filter(), ["CY 13245", "CT 51263", "CL 72534", "CA 99153", "CY 01152"]);
     })
 })
-describe('Error testing', function () {
+describe('Error checking testing', function () {
     it('Should return "valid" as all specifications are met', function () {
         var townInstance = TownTrace();
         townInstance.register("CY 13245");

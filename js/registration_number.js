@@ -2,8 +2,26 @@ var addBtn = document.querySelector(".addBtn");
 var regText = document.querySelector(".regFieldText");
 var selectItems = document.getElementById("item1");
 var errorMessage = document.getElementById("error");
-var townInstance = TownTrace();
+var clearBtn = document.querySelector(".clearBtn");
 var i = 1;
+if(localStorage['regList']){
+    var storedReg = JSON.parse(localStorage['regList'])
+}else{
+    var storedReg = {};
+}
+var townInstance = TownTrace(storedReg);
+var updateRef = townInstance.filter("select town");
+for (var k = 0; k < updateRef.length; k++) {
+    var newHead = document.createElement("h3");
+    newHead.classList.add("childE");
+
+    var parentDiv = document.getElementById("childElement").parentNode;
+    var newRegNum = document.createTextNode(updateRef[k]);
+    newHead.appendChild(newRegNum);
+
+    var currentDiv = document.getElementById("childElement");
+    parentDiv.insertBefore(newHead, currentDiv)
+}
 
 addBtn.addEventListener('click', function () {
     townInstance.register(regText.value.trim());
@@ -22,9 +40,25 @@ addBtn.addEventListener('click', function () {
         parentDiv.insertBefore(newHead, currentDiv);
         regText.value = '';
     } else {
+        console.log(townInstance.errorText());
         errorMessage.innerHTML = townInstance.errorText();
     }
+    localStorage["regList"] = JSON.stringify(townInstance.regList());
 })
+
+clearBtn.addEventListener('click',function(){
+    townInstance.clear();
+    localStorage.clear();
+    var element = document.getElementById("parentElement");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+    var childNode = document.createElement("div");
+    childNode.id = "childElement";
+    var parent = document.getElementById("parentElement");
+    parent.appendChild(childNode);
+})
+
 selectItems.onchange = function () {
     var selectedVal = document.getElementById("item1").value;
     console.log(selectedVal);
@@ -48,7 +82,6 @@ selectItems.onchange = function () {
 
         var currentDiv = document.getElementById("childElement");
         parentDiv.insertBefore(newHead, currentDiv)
-
     }
 
 }
