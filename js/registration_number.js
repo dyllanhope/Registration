@@ -4,9 +4,9 @@ var selectItems = document.getElementById("item1");
 var errorMessage = document.getElementById("error");
 var clearBtn = document.querySelector(".clearBtn");
 var i = 1;
-if(localStorage['regList']){
+if (localStorage['regList']) {
     var storedReg = JSON.parse(localStorage['regList'])
-}else{
+} else {
     var storedReg = {};
 }
 var townInstance = TownTrace(storedReg);
@@ -18,7 +18,7 @@ for (var k = 0; k < updateRef.length; k++) {
 addBtn.addEventListener('click', function () {
     townInstance.register(regText.value.trim());
     if (townInstance.validity(regText.value.trim()) === "valid") {
-        errorMessage.innerHTML='';
+        errorMessage.innerHTML = '';
 
         buildElems(townInstance.regNum());
         regText.value = '';
@@ -29,7 +29,7 @@ addBtn.addEventListener('click', function () {
     localStorage["regList"] = JSON.stringify(townInstance.regList());
 })
 
-clearBtn.addEventListener('click',function(){
+clearBtn.addEventListener('click', function () {
     townInstance.clear();
     localStorage.clear();
     clearChildElems();
@@ -45,7 +45,7 @@ selectItems.onchange = function () {
     }
 
 }
-function clearChildElems(){
+function clearChildElems() {
     var element = document.getElementById("parentElement");
     while (element.firstChild) {
         element.removeChild(element.firstChild);
@@ -55,7 +55,7 @@ function clearChildElems(){
     var parent = document.getElementById("parentElement");
     parent.appendChild(childNode);
 }
-function buildElems(regInput){
+function buildElems(regInput) {
     var newHead = document.createElement("h3");
 
     var parentDiv = document.getElementById("childElement").parentNode;
