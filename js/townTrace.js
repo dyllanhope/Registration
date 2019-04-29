@@ -53,51 +53,38 @@ function TownTrace(registrationList) {
     }
     function filterRegNums(loc) {
         var town = loc || "select town";
+        var locTag = '';
         var store;
         var filteredNums = [];
         store = Object.keys(regNums);
         switch (town) {
             case "Cape Town":
-                for (var x = 0; x < store.length; x++) {
-                    if (store[x].startsWith("CA")) {
-                        filteredNums.push(store[x]);
-                    }
-                }
-                return filteredNums;
+                locTag = "CA";
+                break;
             case "Paarl":
-                for (var x = 0; x < store.length; x++) {
-                    if (store[x].startsWith("CJ")) {
-                        filteredNums.push(store[x]);
-                    }
-                }
-                return filteredNums;
+                locTag = "CJ";
+                break;
             case "Ceres":
-                for (var x = 0; x < store.length; x++) {
-                    if (store[x].startsWith("CT")) {
-                        filteredNums.push(store[x]);
-                    }
-                }
-                return filteredNums;
+                locTag = "CT";
+                break;
             case "Stellenbosch":
-                for (var x = 0; x < store.length; x++) {
-                    if (store[x].startsWith("CL")) {
-                        filteredNums.push(store[x]);
-                    }
-                }
-                return filteredNums;
+                locTag = "CL";
+                break;
             case "Bellville":
-                for (var x = 0; x < store.length; x++) {
-                    if (store[x].startsWith("CY")) {
-                        filteredNums.push(store[x]);
-                    }
-                }
-                return filteredNums;
+                locTag = "CY";
+                break;
             case "select town":
                 for (var x = 0; x < store.length; x++) {
                     filteredNums.push(store[x]);
                 }
                 return filteredNums;
         }
+        for (var x = 0; x < store.length; x++) {
+            if (store[x].startsWith(locTag)) {
+                filteredNums.push(store[x]);
+            }
+        }
+        return filteredNums;
     }
     function displayError() {
         return errorM;

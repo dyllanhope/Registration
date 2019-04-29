@@ -12,15 +12,7 @@ if(localStorage['regList']){
 var townInstance = TownTrace(storedReg);
 var updateRef = townInstance.filter("select town");
 for (var k = 0; k < updateRef.length; k++) {
-    var newHead = document.createElement("h3");
-    newHead.classList.add("childE");
-
-    var parentDiv = document.getElementById("childElement").parentNode;
-    var newRegNum = document.createTextNode(updateRef[k]);
-    newHead.appendChild(newRegNum);
-
-    var currentDiv = document.getElementById("childElement");
-    parentDiv.insertBefore(newHead, currentDiv)
+    buildElems(updateRef[k])
 }
 
 addBtn.addEventListener('click', function () {
@@ -28,16 +20,7 @@ addBtn.addEventListener('click', function () {
     if (townInstance.validity(regText.value.trim()) === "valid") {
         errorMessage.innerHTML='';
 
-        var newHead = document.createElement("h3");
-        newHead.id = "child" + i;
-        i++;
-
-        var parentDiv = document.getElementById("childElement").parentNode;
-        var newRegNum = document.createTextNode(townInstance.regNum());
-        newHead.appendChild(newRegNum);
-
-        var currentDiv = document.getElementById("childElement");
-        parentDiv.insertBefore(newHead, currentDiv);
+        buildElems(townInstance.regNum());
         regText.value = '';
     } else {
         console.log(townInstance.errorText());
@@ -57,17 +40,8 @@ selectItems.onchange = function () {
     console.log(selectedVal);
     var filterList = townInstance.filter(selectedVal);
     clearChildElems();
-
     for (var k = 0; k < filterList.length; k++) {
-        var newHead = document.createElement("h3");
-        newHead.classList.add("childE");
-
-        var parentDiv = document.getElementById("childElement").parentNode;
-        var newRegNum = document.createTextNode(filterList[k]);
-        newHead.appendChild(newRegNum);
-
-        var currentDiv = document.getElementById("childElement");
-        parentDiv.insertBefore(newHead, currentDiv)
+        buildElems(filterList[k]);
     }
 
 }
@@ -80,4 +54,14 @@ function clearChildElems(){
     childNode.id = "childElement";
     var parent = document.getElementById("parentElement");
     parent.appendChild(childNode);
+}
+function buildElems(regInput){
+    var newHead = document.createElement("h3");
+
+    var parentDiv = document.getElementById("childElement").parentNode;
+    var newRegNum = document.createTextNode(regInput);
+    newHead.appendChild(newRegNum);
+
+    var currentDiv = document.getElementById("childElement");
+    parentDiv.insertBefore(newHead, currentDiv)
 }
