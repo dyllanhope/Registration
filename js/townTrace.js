@@ -6,7 +6,9 @@ function TownTrace() {
 
     function registerPlate(plateNum) {
         //CA,CJ,CL,CT,CY
-        upCase = plateNum.toUpperCase();
+        if (plateNum !== undefined) {
+            upCase = plateNum.toUpperCase();
+        }
         if ((upCase.startsWith("CA")) || (upCase.startsWith("CJ")) || (upCase.startsWith("CL")) || (upCase.startsWith("CT")) || (upCase.startsWith("CY"))) {
             if (upCase.length === 8) {
                 if (upCase.substr(2, 1) === " ") {
@@ -44,7 +46,8 @@ function TownTrace() {
     function displayRegList() {
         return regNums;
     }
-    function filterRegNums(town) {
+    function filterRegNums(loc) {
+        var town = loc || "select town";
         var store;
         var filteredNums = [];
         store = Object.keys(regNums);

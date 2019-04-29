@@ -3,7 +3,6 @@ var regText = document.querySelector(".regFieldText");
 var selectItems = document.getElementById("item1");
 var errorMessage = document.getElementById("error");
 var townInstance = TownTrace();
-var selectedVal = 'select town';
 var i = 1;
 
 addBtn.addEventListener('click', function () {
@@ -27,7 +26,7 @@ addBtn.addEventListener('click', function () {
     }
 })
 selectItems.onchange = function () {
-    selectedVal = document.getElementById("item1").value;
+    var selectedVal = document.getElementById("item1").value;
     console.log(selectedVal);
     var filterList = townInstance.filter(selectedVal);
     var element = document.getElementById("parentElement");
