@@ -2,21 +2,36 @@ function TownTrace() {
     var regNums = {};
     var test = "invalid";
     var upCase = '';
+    var errorM = '';
 
     function registerPlate(plateNum) {
         //CA,CJ,CL,CT,CY
         upCase = plateNum.toUpperCase();
         if ((upCase.startsWith("CA")) || (upCase.startsWith("CJ")) || (upCase.startsWith("CL")) || (upCase.startsWith("CT")) || (upCase.startsWith("CY"))) {
-            if (regNums[upCase] === undefined) {
-                regNums[upCase] = 0;
+            if (upCase.length === 8) {
+                if (upCase.substr(2, 1) === " ") {
+                    if (regNums[upCase] === undefined) {
+                        regNums[upCase] = 0;
+                        console.log(regNums);
+                        test = "valid";
+                    } else {
+                        test = "invalid";
+                        errorM = "*This registration has been entered already";
+                    }
+                } else {
+                    test = "invalid";
+                    errorM = "*Please make sure there is a space between the first 2 and last 5 characters";
+                }
+            } else {
+                test = "invalid";
+                errorM = "*Please enter the registration in a valid format";
             }
-            console.log(regNums);
-            test = "valid";
         } else {
             test = "invalid";
+            errorM = "*We do not keep track of registration from that town";
         }
     }
-    function validTest() {
+    function validTest(testPlate) {
         if (test === "valid") {
             return test;
         } else {
@@ -76,7 +91,9 @@ function TownTrace() {
                 return filteredNums;
         }
     }
-
+    function displayError() {
+        return errorM;
+    }
 
 
     return {
@@ -84,6 +101,7 @@ function TownTrace() {
         validity: validTest,
         regNum: displayRegNum,
         regList: displayRegList,
-        filter: filterRegNums
+        filter: filterRegNums,
+        errorText: displayError
     }
 }
