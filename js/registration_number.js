@@ -51,8 +51,8 @@ function clearChildElems() {
     }
     var childNode = document.createElement("div");
     childNode.id = "childElement";
-    var parent = document.getElementById("parentElementRegHeadings");
-    parent.appendChild(childNode);
+    var parentElemHeading = document.getElementById("parentElementRegHeadings");
+    parentElemHeading.appendChild(childNode);
 }
 function buildElems(regInput) {
     var newHead = document.createElement("h3");

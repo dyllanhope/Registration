@@ -1,5 +1,5 @@
 function TownTrace(registrationList) {
-    var regNums = registrationList || {};
+    var regNumsMap = registrationList || {};
     var test = "invalid";
     var upCase = '';
     var errorM = '';
@@ -38,8 +38,8 @@ function TownTrace(registrationList) {
         if (isValidRegNumber(upCase)) {
             if (upCase.length === 8) {
                 if (upCase.substr(2, 1) === " ") {
-                    if (regNums[upCase] === undefined) {
-                        regNums[upCase] = 0;
+                    if (regNumsMap[upCase] === undefined) {
+                        regNumsMap[upCase] = 0;
                         test = "valid";
                     } else {
                         test = "invalid";
@@ -70,11 +70,11 @@ function TownTrace(registrationList) {
         return upCase;
     }
     function displayRegList() {
-        return regNums;
+        return regNumsMap;
     }
-    function filterRegNums(locationName) {
+    function filterregNumsMap(locationName) {
         var town = locationName || "select town";
-        var regNumbers = Object.keys(regNums);
+        var regNumbers = Object.keys(regNumsMap);
         var locationRegNumberStart = townRegNumberMapping[town];
 
         function doesRegNumberStartWith(regNumber){
@@ -88,7 +88,7 @@ function TownTrace(registrationList) {
         return errorM;
     }
     function clearItems() {
-        regNums = {};
+        regNumsMap = {};
         test = "invalid";
         upCase = '';
         errorM = '';
@@ -99,7 +99,7 @@ function TownTrace(registrationList) {
         validity: validTest,
         regNum: displayRegNum,
         regList: displayRegList,
-        filter: filterRegNums,
+        filter: filterregNumsMap,
         errorText: displayError,
         clear: clearItems
     }
