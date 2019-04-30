@@ -33,11 +33,12 @@ function TownTrace(registrationList) {
         } else {
             upCase = plateNum.toUpperCase();
         }
-        var regExTemplate = /^([a-zA-Z0-9\s_-]){4,10}$/;
-        var regExTestingRegNums = regExTemplate.test(upCase);
+        var regExTestingRegNumsLength = /^([A-Z0-9\s-]){4,10}$/.test(upCase);
+        var regNumTestingNoLetters = upCase.substr(4, upCase.length);
+        var numTestReg = /^([0-9\s-]){1,7}$/.test(regNumTestingNoLetters);
         
         if (isValidRegNumber(upCase)) {
-            if (regExTestingRegNums) {
+            if (regExTestingRegNumsLength && numTestReg) {
                 if (upCase.substr(2, 1) === " ") {
                     if (regNums[upCase] === undefined) {
                         regNums[upCase] = 0;
