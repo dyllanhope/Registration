@@ -26,7 +26,6 @@ function TownTrace(registrationList) {
 
     function registerPlate(plateNum) {
         //CA,CJ,CL,CT,CY
-        
         if (plateNum === '' || plateNum === undefined) {
             test = "invalid";
             errorM = "*Please enter your registration";
@@ -34,9 +33,11 @@ function TownTrace(registrationList) {
         } else {
             upCase = plateNum.toUpperCase();
         }
+        var regExTemplate = /^([a-zA-Z0-9\s_-]){4,10}$/;
+        var regExTestingRegNums = regExTemplate.test(upCase);
         
         if (isValidRegNumber(upCase)) {
-            if (upCase.length <= 10 && upCase.length >= 4) {
+            if (regExTestingRegNums) {
                 if (upCase.substr(2, 1) === " ") {
                     if (regNums[upCase] === undefined) {
                         regNums[upCase] = 0;
