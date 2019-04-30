@@ -1,5 +1,5 @@
 function TownTrace(registrationList) {
-    var regNumsMap = registrationList || {};
+    var regNums = registrationList || {};
     var test = "invalid";
     var upCase = '';
     var errorM = '';
@@ -36,10 +36,10 @@ function TownTrace(registrationList) {
         }
         
         if (isValidRegNumber(upCase)) {
-            if (upCase.length === 8) {
+            if (upCase.length <= 10 && upCase.length >= 4) {
                 if (upCase.substr(2, 1) === " ") {
-                    if (regNumsMap[upCase] === undefined) {
-                        regNumsMap[upCase] = 0;
+                    if (regNums[upCase] === undefined) {
+                        regNums[upCase] = 0;
                         test = "valid";
                     } else {
                         test = "invalid";
@@ -47,7 +47,7 @@ function TownTrace(registrationList) {
                     }
                 } else {
                     test = "invalid";
-                    errorM = "*Please make sure there is a space between the first 2 and last 5 characters";
+                    errorM = "*Please make sure there is a space after the first 2 characters";
                 }
             } else {
                 test = "invalid";
@@ -70,11 +70,11 @@ function TownTrace(registrationList) {
         return upCase;
     }
     function displayRegList() {
-        return regNumsMap;
+        return regNums;
     }
-    function filterregNumsMap(locationName) {
+    function filterregNums(locationName) {
         var town = locationName || "select town";
-        var regNumbers = Object.keys(regNumsMap);
+        var regNumbers = Object.keys(regNums);
         var locationRegNumberStart = townRegNumberMapping[town];
 
         function doesRegNumberStartWith(regNumber){
@@ -88,7 +88,7 @@ function TownTrace(registrationList) {
         return errorM;
     }
     function clearItems() {
-        regNumsMap = {};
+        regNums = {};
         test = "invalid";
         upCase = '';
         errorM = '';
@@ -99,7 +99,7 @@ function TownTrace(registrationList) {
         validity: validTest,
         regNum: displayRegNum,
         regList: displayRegList,
-        filter: filterregNumsMap,
+        filter: filterregNums,
         errorText: displayError,
         clear: clearItems
     }
