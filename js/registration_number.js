@@ -9,10 +9,11 @@ let storedReg = {};
 if (localStorage['regList']) {
     storedReg = JSON.parse(localStorage['regList'])
 }
-var townInstance = TownTrace(storedReg);
+var townInstance = RegistrationNumberManager(storedReg);
+
 buildSelectElem(townInstance.listKeys(),townInstance.listVals());
 
-var updateRef = townInstance.filter("select town");
+var updateRef = townInstance.filter("show all towns");
 for (var k = 0; k < updateRef.length; k++) {
     buildElems(updateRef[k])
 }
