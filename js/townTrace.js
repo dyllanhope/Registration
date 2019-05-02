@@ -4,7 +4,7 @@ function TownTrace(registrationList) {
     var upCase = '';
     var errorM = '';
     var townRegNumberMapping = {
-        "select town" : "",
+        "select town": "",
         "Cape Town": "CA",
         "Paarl": "CJ",
         "Ceres": "CT",
@@ -14,9 +14,9 @@ function TownTrace(registrationList) {
 
     var startsWithOptions = Object.values(townRegNumberMapping);
 
-    function isValidRegNumber(regNumber){
-        var matchFound = startsWithOptions.some(function(townStart){
-            if (townStart === ""){
+    function isValidRegNumber(regNumber) {
+        var matchFound = startsWithOptions.some(function (townStart) {
+            if (townStart === "") {
                 return false;
             }
             return regNumber.startsWith(townStart);
@@ -34,9 +34,9 @@ function TownTrace(registrationList) {
             upCase = plateNum.toUpperCase();
         }
         var regExTestingRegNumsLength = /^([A-Z0-9\s-]){4,10}$/.test(upCase);
-        var regNumTestingNoLetters = upCase.substr(4, upCase.length);
+        var regNumTestingNoLetters = upCase.substr(3, upCase.length);
         var numTestReg = /^([0-9\s-]){1,7}$/.test(regNumTestingNoLetters);
-        
+
         if (isValidRegNumber(upCase)) {
             if (regExTestingRegNumsLength && numTestReg) {
                 if (upCase.substr(2, 1) === " ") {
@@ -79,7 +79,7 @@ function TownTrace(registrationList) {
         var regNumbers = Object.keys(regNums);
         var locationRegNumberStart = townRegNumberMapping[town];
 
-        function doesRegNumberStartWith(regNumber){
+        function doesRegNumberStartWith(regNumber) {
             return regNumber.startsWith(locationRegNumberStart);
         }
         var filteredNums = regNumbers.filter(doesRegNumberStartWith);
