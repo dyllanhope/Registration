@@ -1,4 +1,4 @@
-function RegistrationManager(registrationList) {
+function RegistrationNumberManager(registrationList) {
     var regNums = registrationList || {};
     var test = "invalid";
     var upCase = '';
