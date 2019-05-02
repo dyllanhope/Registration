@@ -1,10 +1,10 @@
-function TownTrace(registrationList) {
+function RegistrationManager(registrationList) {
     var regNums = registrationList || {};
     var test = "invalid";
     var upCase = '';
     var errorM = '';
     var townRegNumberMapping = {
-        "select town": "",
+        "show all towns": "",
         "Cape Town": "CA",
         "Paarl": "CJ",
         "Ceres": "CT",
@@ -75,7 +75,7 @@ function TownTrace(registrationList) {
         return regNums;
     }
     function filterregNums(locationName) {
-        var town = locationName || "select town";
+        var town = locationName || "show all towns";
         var regNumbers = Object.keys(regNums);
         var locationRegNumberStart = townRegNumberMapping[town];
 
