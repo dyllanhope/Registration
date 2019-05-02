@@ -54,7 +54,7 @@ function clearChildElems() {
     var parent = document.getElementById("parentElementRegHeadings");
     parent.appendChild(childNode);
 }
-function buildElems(regInput) {
+function buildElemsRegistration(regInput) {
     var newHead = document.createElement("h3");
 
     var parentDiv = document.getElementById("childElement").parentNode;
