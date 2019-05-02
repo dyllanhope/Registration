@@ -19,7 +19,7 @@ describe('List testing', function () {
         // invalid formats
         townInstance.register("CP 01152"); //wrong town
         townInstance.register("CY01152"); //no space between first 2 and last 5 chars
-        townInstance.register("CY 011524"); //too many chars
+        townInstance.register("CY 011 5243"); //too many chars
         townInstance.register("CY 01152"); // repeat of a previous registration
 
         assert.deepEqual(townInstance.regList(), { 'CY 13245': 0, 'CT 51263': 0, 'CL 72534': 0, 'CA 99153': 0, 'CY 01152': 0 });
@@ -99,7 +99,7 @@ describe('Error checking testing', function () {
     })
     it('Should return error message for registration that contains either too many or too little characters', function () {
         var townInstance = TownTrace();
-        townInstance.register("CY 132452");
+        townInstance.register("CY 132 4523");
 
         assert.equal(townInstance.errorText(), "*Please enter the registration in a valid format");
     })
@@ -107,7 +107,7 @@ describe('Error checking testing', function () {
         var townInstance = TownTrace();
         townInstance.register("CY313245");
 
-        assert.equal(townInstance.errorText(), "*Please make sure there is a space between the first 2 and last 5 characters");
+        assert.equal(townInstance.errorText(), "*Please make sure there is a space after the first 2 characters");
     })
     it('Should return error message for registration that has already been entered', function () {
         var townInstance = TownTrace();
