@@ -95,7 +95,12 @@ function TownTrace(registrationList) {
         upCase = '';
         errorM = '';
     }
-
+    function displayRegNumList(){
+        return Object.keys(townRegNumberMapping);
+    }
+    function displayRegNumValues(){
+        return Object.values(townRegNumberMapping);
+    }
     return {
         register: registerPlate,
         validity: validTest,
@@ -103,6 +108,8 @@ function TownTrace(registrationList) {
         regList: displayRegList,
         filter: filterregNums,
         errorText: displayError,
-        clear: clearItems
+        clear: clearItems,
+        listKeys: displayRegNumList,
+        listVals: displayRegNumValues
     }
 }

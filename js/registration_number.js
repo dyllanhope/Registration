@@ -9,8 +9,9 @@ let storedReg = {};
 if (localStorage['regList']) {
     storedReg = JSON.parse(localStorage['regList'])
 }
-
 var townInstance = TownTrace(storedReg);
+buildSelectElem(townInstance.listKeys(),townInstance.listVals());
+
 var updateRef = townInstance.filter("select town");
 for (var k = 0; k < updateRef.length; k++) {
     buildElems(updateRef[k])
@@ -54,7 +55,7 @@ function clearChildElems() {
     var parent = document.getElementById("parentElementRegHeadings");
     parent.appendChild(childNode);
 }
-function buildElemsRegistration(regInput) {
+function buildElems(regInput) {
     var newHead = document.createElement("h3");
 
     var parentDiv = document.getElementById("childElement").parentNode;
@@ -63,4 +64,12 @@ function buildElemsRegistration(regInput) {
 
     var currentDiv = document.getElementById("childElement");
     parentDiv.insertBefore(newHead, currentDiv)
+}
+function buildSelectElem(townKeys,townValues) {
+    for (var z = 1; z < townKeys.length; z++) {
+        var option = document.createElement('option');
+        option.text = townKeys[z] + " (" + townValues[z] +")";
+        option.value = townKeys[z];
+        selectItems.appendChild(option);
+    }
 }
