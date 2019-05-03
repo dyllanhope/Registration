@@ -49,9 +49,6 @@ selectItems.onchange = function () {
 function clearChildElems() {
     var element = document.getElementById("parentElementRegHeadings");
     element.innerHTML = "";
-    /*while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }*/
     var childNode = document.createElement("div");
     childNode.id = "childElement";
     var parent = document.getElementById("parentElementRegHeadings");
