@@ -6,6 +6,10 @@ span{
     text-shadow: #000 0px 0px 2px;
     -webkit-font-smoothing: antialiased;
 }
+.border{
+    border: 1px solid white;
+    border-radius: 5px;
+}
 .register h3{
     border: 1px solid black;
     background-color: yellow;
@@ -25,4 +29,14 @@ body{
     color:red;
     font-size: 15px;
     float:left;
+}
+@media(min-width:714px){
+    .divMargRight{
+        margin-left: auto !important;
+        float: left !important;
+    }
+    .divMargLeft{
+        margin-right: auto !important;
+        float: right !important;
+    }
 }
