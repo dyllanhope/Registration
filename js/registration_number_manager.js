@@ -12,7 +12,7 @@ function RegistrationNumberManager(registrationList) {
         "Bellville": "CY"
     }
 
-    var startsWithOptions = Object.values(townRegNumberMapping);
+    var startsWithOptions = Object.values(townRegNumberMapping); 
 
     function isValidRegNumber(regNumber) {
         var matchFound = startsWithOptions.some(function (townStart) {

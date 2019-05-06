@@ -16,25 +16,12 @@ span{
     border-radius: 5px;
     width:120px;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-top: 0px ;
     margin-bottom: 5px;
     font-size: 19px;
-}
-.register li{
-    border: 1px solid black;
-    background-color: yellow;
-    border-radius: 5px;
-    width:120px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px ;
-    margin-bottom: 5px;
-    font-size: 19px;
-    list-style: none;
-    font-weight: bold;
+    float : left;
 }
 .errorMes p{
     color:red;
