@@ -34,6 +34,7 @@ span{
     margin-bottom: 5px;
     font-size: 19px;
     list-style: none;
+    font-weight: bold;
 }
 .errorMes p{
     color:red;
