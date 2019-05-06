@@ -24,6 +24,7 @@ addBtn.addEventListener('click', function () {
         errorMessage.innerHTML = '';
 
         buildElems(townInstance.regNum());
+
         regText.value = '';
     } else {
         errorMessage.innerHTML = townInstance.errorText();
@@ -33,7 +34,7 @@ addBtn.addEventListener('click', function () {
 
 clearBtn.addEventListener('click', function () {
     townInstance.clear();
-    localStorage.clear();
+    localStorage["regList"]='';
     clearChildElems();
 })
 

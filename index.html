@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
     <title>Registration Numbers</title>
 </head>
 
@@ -15,8 +17,7 @@
         <div class="row">
             <div class="col-6 border divMargRight">
                 <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-5">
+                    <div class="col-12 center">
                         <h2>Registration Number:</h2>
                     </div>
                 </div>
@@ -36,6 +37,7 @@
                         <button style="float:left" class="clearBtn">Clear List</button>
                         <button style="float:right" class="addBtn">Add</button>
                     </div>
+                    <div class="col-4"></div>
                 </div>
                 <div class="row">
                     <div class="col-4"></div>
@@ -44,6 +46,7 @@
                             <option value="show all towns">show all towns</option>
                         </select>
                     </div>
+                    <div class="col-4"></div>
                 </div>
                 <div class="row">
                     <div id="parentElementRegHeadings" class="register">
@@ -51,11 +54,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-6 border divMargLeft">
                 <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-5">
+                    <div class="col-12 center">
                         <h2>Registration Number:</h2>
                     </div>
                 </div>
@@ -63,31 +65,37 @@
                     <div class="col-4"></div>
                     <div class="col-4">
                         <span>eg.(CY 563 264)</span>
-                        <input style="float:right" type="text" class="regFieldText">
+                        <input style="float:right" type="text" class="regFieldTextTemplate">
                     </div>
                     <div class="col-4 errorMes">
-                        <p id="error" style="margin: 0px"></p>
+                        <p id="errorTemplate" style="margin: 0px"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <button style="float:left" class="clearBtn">Clear List</button>
-                        <button style="float:right" class="addBtn">Add</button>
+                        <button style="float:left" class="clearBtnTemplate">Clear List</button>
+                        <button style="float:right" class="addBtnTemplate">Add</button>
                     </div>
+                    <div class="col-4"></div>
                 </div>
                 <div class="row">
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <select id="item1">
+                        <select id="item2">
                             <option value="show all towns">show all towns</option>
                         </select>
                     </div>
+                    <div class="col-4"></div>
                 </div>
                 <div class="row">
-                    <div id="parentElementRegHeadings" class="register">
-                        <div id="childElement"></div>
-                    </div>
+                    <ul style="padding:0px;margin-top:0px;margin-bottom:0px" class="regData register">
+                        <script type="text/x-template" class="regPlateTemplate">
+                            {{#each plates}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </script>
+                    <ul>
                 </div>
             </div>
         </div>
@@ -96,6 +104,8 @@
 
 </body>
 <script src="js/registration_number_manager.js" charset="utf-8"></script>
-<script src="js/registration_number.js" charset="utf-8"></script>
+<script src="js/registration_number_Elements.js" charset="utf-8"></script>
+<script src="js/registration_number_Template .js" charset="utf-8"></script>
+
 
 </html>
