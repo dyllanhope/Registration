@@ -5,6 +5,7 @@ var errorMessageTemplate = document.getElementById("errorTemplate");
 var clearBtnTemplate = document.querySelector(".clearBtnTemplate");
 var templateSourceRegNum = document.querySelector(".regPlateTemplate").innerHTML;
 var regDataElem = document.querySelector(".regData");
+var regPlateTemplate = Handlebars.compile(templateSourceRegNum);
 var i = 1;
 
 let storedRegTemplate = {};
@@ -35,25 +36,18 @@ addBtnTemplate.addEventListener('click', function () {
 clearBtnTemplate.addEventListener('click', function () {
     townInstanceTemplate.clear();
     localStorage["reglistTemplate"] = '';
-    clearTemplateElems();
 
 })
 
 selectItemsTemplate.onchange = function () {
     var selectedVal = document.getElementById("item2").value;
     var filterList = townInstanceTemplate.filter(selectedVal);
-    clearTemplateElems();
     buildTemplateElem(filterList);
-}
-
-function clearTemplateElems() {
-    regDataElem.innerHTML = '';
 }
 
 function buildTemplateElem(regObject) {
 
     var registerNumber = { plates: regObject };
-    var regPlateTemplate = Handlebars.compile(templateSourceRegNum);
     var regDataHTML = regPlateTemplate(registerNumber);
 
     regDataElem.innerHTML = regDataHTML;
@@ -66,3 +60,10 @@ function buildSelectElem(townKeys, townValues) {
         selectItemsTemplate.appendChild(option);
     }
 }
+Handlebars.registerHelper('isClear',function(){
+    if(townInstanceTemplate.clear()){
+        return true;
+    } else {
+        return false;
+    }
+})

@@ -10,6 +10,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
     <title>Registration Numbers</title>
+
+    <script type="text/x-template" class="regPlateTemplate">
+        {{#if isClear}}
+            ''
+        {{else}}
+            {{#each plates}}
+            <h3>{{this}}</h3>
+            {{/each}}
+        {{/if}}
+    </script>
+
 </head>
 
 <body style="background-image:url(wallpaper.jpg)">
@@ -48,9 +59,11 @@
                     </div>
                     <div class="col-4"></div>
                 </div>
-                <div class="row">
-                    <div id="parentElementRegHeadings" class="register">
-                        <div id="childElement"></div>
+                <div class="container">
+                    <div class="row">
+                        <div id="parentElementRegHeadings" class="register">
+                            <div id="childElement"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,13 +101,10 @@
                     </div>
                     <div class="col-4"></div>
                 </div>
-                <div class="row">
-                    <div class="regData register center">
-                        <script type="text/x-template" class="regPlateTemplate">
-                            {{#each plates}}
-                            <h3>{{this}}</h3>
-                            {{/each}}
-                        </script>
+                <div class="container">
+                    <div class="row register">
+                        <div class="regData">
+                        </div>
                     </div>
                 </div>
             </div>

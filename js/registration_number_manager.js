@@ -94,6 +94,7 @@ function RegistrationNumberManager(registrationList) {
         test = "invalid";
         upCase = '';
         errorM = '';
+        return true;
     }
     function displayRegNumList(){
         return Object.keys(townRegNumberMapping);
