@@ -34,6 +34,7 @@ addBtnTemplate.addEventListener('click', function () {
 })
 
 clearBtnTemplate.addEventListener('click', function () {
+    buildTemplateElem("");
     townInstanceTemplate.clear();
     localStorage["reglistTemplate"] = '';
 
